@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recap</title>
+</head>
+<body>
+    <h1>Recap</h1>
+    <h2>What does synchronous and asynchronous means?</h2>
+    <p>
+        Async is short for "asynchronous". It's easier to understand async if you first understand what "synchronous" means.
+        In programming, we can simplify the definition of synchronous code as "a bunch of statements in sequence"; so each statement
+        in your code is executed one after the other. This means each statement has to wait for the previous one to finish executing.
+        <br><br>
+        console.log('First');<br>
+        console.log('Second');<br>
+        console.log('Third');<br>
+        <br><br>
+        The statements above will execute in order outputting "First", "Second", "Third" to the console. That's because it's written synchronously.
+        Asynchronous code takes statements outside of the main flow, allowing the code after asynchronous call to be executed inmediately without waiting. you've
+        probably used asynchronous programming before with ajax or something.
+        <br><br>
+        console.log('First');<br>
+        jQuery.get("page.html", function(data){<br>
+            console.log('Second');<br>
+        });<br>
+        console.log('Third');<br>
+        <br><br>
+        In the example above, the output will be different: "First","Third", "Second". this is because the function passed into jQuery.get is not called inmediately
+        it has to wait for jQuery to fetch the page you asked for before it can execute.
+        <i>"So why the hell use asynchronous code instead of synchronous code?"</i> I hear you ask! I'll explain.
+        <br>
+    </P>
+    <h2>Why Asynchronous?</h2>
+    <p>
+        When JavaScript is executed, sychronous code has potential to block futher execution until it has finished what is doing, In english, long-running JavaScript
+        functions can make UI or server unresponsive until the function has returned. Obviously this can result in a terrible user-experience. <br>
+        For example: if you want to load your latest tweets onto a webpage, and you do this synchronously, then a visitor to your site won't be able to do anything
+        until those tweets are loaded. This could cause a long delay before they even get to see the content of your site! I've illustrated the problem below: <br>
+        Example 1: <br>
+        <br><br>
+        tweets = loadTweetsSync(); <br>
+        // ...wait<br>
+        // ...Do something with the tweets <br>
+        doOtherImportantThings();<br>
+        <br><br>
+        loadTweetsAsync(function(){ <br>
+        // ...wait<br>
+        // ...Do something with the tweets <br>
+        }); <br>
+        doOtherImportantThings();<br>
+        <br><br>
+        In the second example , doSomeOtherImportant Things doesn't have to wait for the tweets to load.
+    </p>
+</body>
+</html>
